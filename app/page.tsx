@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen relative font-plus-jakarta-sans">
-      <div className="w-full h-screen relative">
+      <div className="w-full h-screen relative -translate-y-[50px]">
         <div className="absolute inset-0 pointer-events-none">
           <div className="flex flex-col items-center justify-center text-center px-4 h-full">
             {/* Hero Text */}

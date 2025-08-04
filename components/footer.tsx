@@ -6,7 +6,7 @@ import { ThemeLogo } from "@/components/theme-logo"
 
 export function Footer() {
   return (
-    <footer className="bg-[var(--secondary)] border-t border-border border-[var(--muted)]">
+    <footer className="bg-[var(--secondary)] border-t border-border border-[var(--accent)]">
       <div className="w-full py-6 px-8">
         <div className="flex flex-col mb-4 lg:mb-6">
           {/* Logo centered at top */}
