@@ -128,7 +128,7 @@ const container = {
 
 const header = {
   backgroundColor: '#FEFBF3',
-  padding: '40px 10px',
+  padding: '0px 0px',
   textAlign: 'center' as const,
 }
 
@@ -145,7 +145,7 @@ const h1 = {
 }
 
 const headerText = {
-  color: '#FEFBF3',
+  color: '#ffffff',
   fontSize: '16px',
   margin: '0',
   opacity: '0.9',
