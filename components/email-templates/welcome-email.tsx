@@ -136,16 +136,8 @@ const logo = {
   margin: '0 auto 20px',
 }
 
-const h1 = {
-  color: '#ffffff',
-  fontSize: '32px',
-  fontWeight: '700',
-  margin: '0 0 10px',
-  lineHeight: '1.2',
-}
-
 const headerText = {
-  color: '#ffffff',
+  color: '#000000',
   fontSize: '16px',
   margin: '0',
   opacity: '0.9',
@@ -153,13 +145,6 @@ const headerText = {
 
 const content = {
   padding: '40px 30px',
-}
-
-const h2 = {
-  color: '#171717',
-  fontSize: '24px',
-  fontWeight: '600',
-  margin: '0 0 20px',
 }
 
 const text = {
@@ -175,7 +160,7 @@ const socialContainer = {
 }
 
 const socialLink = {
-  color: '#ffffff',
+  color: '#000000',
   textDecoration: 'underline',
   fontSize: '14px',
   display: 'inline-block',
