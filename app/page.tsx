@@ -12,7 +12,7 @@ export default function Home() {
     <main className="min-h-screen relative font-plus-jakarta-sans">
       <div className="w-full h-screen relative -translate-y-[50px]">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="flex flex-col items-center justify-center text-center px-4 h-full">
+          <div className="flex flex-col items-center justify-center text-center px-4 h-full -translate-y-[5vh]">
             {/* Hero Text */}
             <div className="mb-8 md:mb-12 lg:mb-6">
                 {/* Feather Icon */}
