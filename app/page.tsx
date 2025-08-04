@@ -24,11 +24,11 @@ export default function Home() {
                   />
                 </div>
                 
-                <h1 className="font-playfair-display font-semibold text-5xl md:text-6xl lg:text-7xl xl:text-9xl mb-4 md:mb-6 lg:mb-4 pointer-events-auto">
+                <h1 className="font-playfair-display font-semibold text-8xl xl:text-9xl mb-4 md:mb-6 lg:mb-4 pointer-events-auto">
                   Chatr
                 </h1>
 
-                <p className="font-plus-jakarta-sans pt-[140px] md:pt-0 text-sm md:text-base text-primary mb-6 max-w-sm md:max-w-xl lg:max-w-2xl mx-auto select-text pointer-events-auto">
+                <p className="font-plus-jakarta-sans pt-[10px] md:pt-0 text-sm md:text-base text-[var(--primary)] font-medium mb-6 max-w-sm md:max-w-xl lg:max-w-2xl mx-auto select-text pointer-events-auto">
                   We&apos;re building a free speech platform, all on-chain.
                 </p>
             </div>
