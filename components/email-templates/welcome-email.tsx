@@ -27,7 +27,7 @@ export const WelcomeEmail = ({
   return (
     <Html>
       <Head />
-      <Preview>Welcome to Chatr - The future of decentralized communication</Preview>
+      <Preview>Welcome to Chatr - A free speech platform, all on-chain</Preview>
       <Body style={main}>
         <Container style={container}>
           {/* Header Section */}
@@ -40,7 +40,7 @@ export const WelcomeEmail = ({
               style={logo}
             />
             <Text style={headerText} className="text-plus-jakarta-sans">
-              The future of decentralized communication
+              We&apos;re building a free speech platform, all on-chain.
             </Text>
           </Section>
 
