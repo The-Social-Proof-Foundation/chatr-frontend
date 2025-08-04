@@ -1,6 +1,8 @@
 'use server'
 
 import { Resend } from 'resend'
+import { render } from '@react-email/render'
+import { WelcomeEmail } from '@/components/email-templates'
 
 // Resend utilities for audience management and transactional emails
 // Handles adding users to audiences AND sending welcome emails
@@ -167,7 +169,7 @@ export async function smartAddContactToResend(
   }
 }
 
-// Send welcome email using Resend
+// Send welcome email using Resend with React Email template
 export async function sendWelcomeEmail(
   emailData: WelcomeEmailData
 ): Promise<ResendEmailResponse> {
@@ -181,93 +183,54 @@ export async function sendWelcomeEmail(
     }
 
     const fromEmail = process.env.RESEND_FROM_EMAIL || 'brandon@dripdrop.social'
-    const fromName = process.env.RESEND_FROM_NAME || 'DripDrop'
+    const fromName = process.env.RESEND_FROM_NAME || 'Chatr'
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://chatr.social'
+
+    console.log('📧 Rendering React Email template...')
+    
+    // Render the React Email template
+    const emailHtml = await render(WelcomeEmail({
+      firstName: emailData.firstName,
+      email: emailData.email,
+      baseUrl
+    }))
 
     // Send welcome email
     const resend = getResendClient()
     const result = await resend.emails.send({
       from: `${fromName} <${fromEmail}>`,
       to: [emailData.email],
-      subject: 'Welcome to DripDrop - Get Started Today!',
-      html: `
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Welcome to DripDrop</title>
-        </head>
-        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; text-align: center; color: white; border-radius: 10px 10px 0 0;">
-            <h1 style="margin: 0; font-size: 28px;">Welcome to DripDrop!</h1>
-          </div>
-          
-          <div style="background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px;">
-            <h2 style="color: #333; margin-top: 0;">Hello ${emailData.firstName || 'there'}!</h2>
-            
-            <p>Thank you for joining DripDrop! We're thrilled to have you as part of our growing community.</p>
-            
-            <p><strong>What's next?</strong></p>
-            <ul>
-              <li>Complete your profile to connect with others</li>
-              <li>Explore the DripDrop ecosystem</li>
-              <li>Start building your decentralized social presence</li>
-            </ul>
-            
-            <div style="text-align: center; margin: 30px 0;">
-              <a href="${process.env.NEXT_PUBLIC_BASE_URL || 'https://dripdrop.social'}/wallet" 
-                 style="background: #667eea; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; display: inline-block;">
-                Get Started Now
-              </a>
-            </div>
-            
-            <p>If you have any questions, feel free to reach out to our support team.</p>
-            
-            <p>Best regards,<br>
-            <strong>The DripDrop Team</strong></p>
-            
-            <hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;">
-            
-            <p style="font-size: 12px; color: #666;">
-              This email was sent to ${emailData.email} because you signed up for DripDrop.<br>
-              <a href="${process.env.NEXT_PUBLIC_BASE_URL || 'https://dripdrop.social'}/unsubscribe?email=${encodeURIComponent(emailData.email)}" 
-                 style="color: #667eea;">Unsubscribe</a> | 
-              <a href="${process.env.NEXT_PUBLIC_BASE_URL || 'https://dripdrop.social'}/privacy" 
-                 style="color: #667eea;">Privacy Policy</a>
-            </p>
-          </div>
-        </body>
-        </html>
-      `,
-      text: `
-Welcome to DripDrop, ${emailData.firstName || 'there'}!
+      subject: 'Welcome to Chatr!',
+      html: emailHtml,
+      text: `Welcome to Chatr!
 
-Thank you for joining DripDrop! We're thrilled to have you as part of our growing community.
+Thank you for joining Chatr! We're thrilled to have you as part of our growing community building the future of decentralized communication.
 
-What's next?
-- Complete your profile to connect with others
-- Explore the DripDrop ecosystem  
-- Start building your decentralized social presence
+We're working hard to launch and can't wait to share this revolutionary platform with you. Stay tuned for exclusive updates!
 
-Get started: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://dripdrop.social'}/wallet
+While you wait for launch, follow us on social media for the latest updates:
 
-If you have any questions, feel free to reach out to our support team.
+- X (Twitter): https://x.com/chatr_social
+- Telegram: https://t.me/chatr_social
 
-Best regards,
-The DripDrop Team
+Questions? Feel free to reach out to us on X or Telegram.
+
+Talk soon,
+The Chatr Team
 
 ---
-This email was sent to ${emailData.email} because you signed up for DripDrop.
-Unsubscribe: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://dripdrop.social'}/unsubscribe?email=${encodeURIComponent(emailData.email)}
-Privacy Policy: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://dripdrop.social'}/privacy
-      `.trim()
+This email was sent to ${emailData.email} because you signed up for Chatr updates.
+Unsubscribe: ${baseUrl}/unsubscribe?email=${encodeURIComponent(emailData.email)}
+Privacy Policy: ${baseUrl}/privacy
+chatr.social`
     })
 
     if (result.error) {
-      console.error('Resend email API error:', result.error)
+      console.error('❌ Resend email API error:', result.error)
       throw new Error(`Resend email API error: ${result.error.message}`)
     }
 
+    console.log('✅ Welcome email sent successfully!')
     return { 
       success: true, 
       message: 'Welcome email sent successfully!',
@@ -275,7 +238,7 @@ Privacy Policy: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://dripdrop.social'}
     }
     
   } catch (error) {
-    console.error('Resend welcome email error:', error)
+    console.error('❌ Resend welcome email error:', error)
     return { 
       success: false, 
       message: 'Failed to send welcome email. Please try again.' 

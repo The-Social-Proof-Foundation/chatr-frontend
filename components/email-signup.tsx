@@ -11,10 +11,13 @@ import { useTheme } from "next-themes"
 
 export function EmailSignup() {
   const [email, setEmail] = useState("")
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [isValid, setIsValid] = useState(true)
   const [message, setMessage] = useState("")
   const [mounted, setMounted] = useState(false)
+  const [showNameFields, setShowNameFields] = useState(false)
   const { theme, resolvedTheme } = useTheme()
 
   // Handle hydration
@@ -44,7 +47,11 @@ export function EmailSignup() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email })
+        body: JSON.stringify({ 
+          email,
+          firstName: firstName.trim() || undefined,
+          lastName: lastName.trim() || undefined
+        })
       })
 
       const result = await response.json()
@@ -52,12 +59,15 @@ export function EmailSignup() {
       if (response.ok && result.success) {
         // Show professional toast notification
         toast.success("🎉 You're all set!", {
-          description: "Welcome to DripDrop! Check your email for exclusive updates.",
+          description: "Welcome to Chatr! Check your email for exclusive updates.",
           duration: 4000,
         })
         
         setEmail("")
+        setFirstName("")
+        setLastName("")
         setMessage("")
+        setShowNameFields(false)
       } else {
         setMessage(result.error || "Something went wrong. Please try again.")
         setIsValid(false)
@@ -89,7 +99,7 @@ export function EmailSignup() {
                 setEmail(e.target.value)
                 setIsValid(true)
               }}
-              className={`pl-10 font-plus-jakarta-sans ${
+              className={`pl-10 font-plus-jakarta-sans border-[var(--border)] border-[2px] placeholder:text-[var(--muted-foreground)] ${
                 !isValid ? "border-red-500 focus:border-red-500" : ""
               }`}
               required

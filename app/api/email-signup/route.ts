@@ -201,8 +201,8 @@ export async function POST(req: NextRequest) {
 export async function OPTIONS(req: NextRequest) {
   const origin = req.headers.get('origin')
   const allowedOrigins = [
-    'https://dripdrop.social',
-    'https://www.dripdrop.social',
+    'https://chatr.social',
+    'https://www.chatr.social',
     'http://localhost:3000',
     'http://localhost:3001',
     'http://localhost:3002'
@@ -217,7 +217,7 @@ export async function OPTIONS(req: NextRequest) {
   return new NextResponse(null, {
     status: 200,
     headers: {
-      'Access-Control-Allow-Origin': isAllowedOrigin ? (origin || '*') : 'https://dripdrop.social',
+      'Access-Control-Allow-Origin': isAllowedOrigin ? (origin || '*') : 'https://chatr.social',
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       'Access-Control-Max-Age': '86400', // 24 hours
