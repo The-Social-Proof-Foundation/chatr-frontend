@@ -12,7 +12,7 @@
 
 ## About
 
-Chatr is building the future of a decentralized community square where free speech thrives on the blockchain. Built with modern web technologies and designed for transparency, security, and user empowerment.
+Chatr is building the future decentralized town square where free speech thrives on the blockchain. Built with modern web frameworks and designed for transparency, security, and user empowerment.
 
 ## Tech Stack
 
