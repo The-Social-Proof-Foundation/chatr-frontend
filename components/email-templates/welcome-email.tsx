@@ -33,7 +33,7 @@ export const WelcomeEmail = ({
           {/* Header Section */}
           <Section style={header}>
             <Img
-              src={`${baseUrl}/chatr-full-logo-white.png`}
+              src={`${baseUrl}/chatr-full-logo-dark.png`}
               width="240"
               height="240"
               alt="Chatr"
@@ -69,7 +69,7 @@ export const WelcomeEmail = ({
               </Link>
               <Text style={socialSeparator}>•</Text>
               <Link href="https://www.mysocial.network/ecosystem/chatr" style={socialLink}>
-                MySocial Network
+                MySocial
               </Link>
             </Section>
 
@@ -119,7 +119,7 @@ const main = {
 }
 
 const container = {
-  backgroundColor: '#ffffff',
+  backgroundColor: '#FEFBF3',
   margin: '0 auto',
   padding: '20px 0 48px',
   marginBottom: '64px',
@@ -127,9 +127,8 @@ const container = {
 }
 
 const header = {
-  backgroundColor: '#171717',
-  borderRadius: '12px 12px 0 0',
-  padding: '40px 30px',
+  backgroundColor: '#FEFBF3',
+  padding: '40px 10px',
   textAlign: 'center' as const,
 }
 
@@ -146,7 +145,7 @@ const h1 = {
 }
 
 const headerText = {
-  color: '#ffffff',
+  color: '#FEFBF3',
   fontSize: '16px',
   margin: '0',
   opacity: '0.9',
@@ -164,60 +163,30 @@ const h2 = {
 }
 
 const text = {
-  color: '#374151',
+  color: '#171717',
   fontSize: '16px',
   lineHeight: '1.6',
   margin: '0 0 20px',
 }
 
-const features = {
-  margin: '20px 0',
-}
-
-const feature = {
-  color: '#374151',
-  fontSize: '16px',
-  lineHeight: '1.6',
-  margin: '0 0 12px',
-}
-
-const buttonContainer = {
-  textAlign: 'center' as const,
-  margin: '32px 0',
-}
-
-const button = {
-  backgroundColor: '#171717',
-  borderRadius: '8px',
-  color: '#ffffff',
-  fontSize: '16px',
-  fontWeight: '600',
-  textDecoration: 'none',
-  textAlign: 'center' as const,
-  display: 'inline-block',
-  padding: '14px 28px',
-  border: 'none',
-}
-
 const socialContainer = {
   textAlign: 'center' as const,
   margin: '24px 0',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  gap: '8px',
 }
 
 const socialLink = {
   color: '#171717',
   textDecoration: 'underline',
   fontSize: '14px',
+  display: 'inline-block',
+  margin: '0 4px',
 }
 
 const socialSeparator = {
   color: '#9CA3AF',
   fontSize: '14px',
-  margin: '0 8px',
+  margin: '0 4px',
+  display: 'inline-block',
 }
 
 const signature = {
