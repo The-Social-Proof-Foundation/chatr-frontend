@@ -175,7 +175,7 @@ const socialContainer = {
 }
 
 const socialLink = {
-  color: '#171717',
+  color: '#ffffff',
   textDecoration: 'underline',
   fontSize: '14px',
   display: 'inline-block',
